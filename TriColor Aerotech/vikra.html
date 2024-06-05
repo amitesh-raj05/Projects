@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="en"  data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIKRA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Jaldi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Karantina' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            padding-top: 70px;
+            /* Adjust this value based on your navbar height */
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+
+        .glow-on-hover {
+            width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff4500, #ff7300, #ff9a00, #ffc300, #fffb00, #ff9a00, #ff4500, #cd3700);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 1;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:active {
+            color: #000;
+        }
+
+        .glow-on-hover:active:after {
+            background: transparent;
+        }
+
+        @keyframes glowing {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .photo {
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+            width: 100%;
+            background-image: url(./drone\ extended.png);
+            background-position: center;
+            background-size: cover;
+            justify-content: center;
+            padding: 0%;
+            margin: 0%;
+        }
+
+        .he {
+            margin-left: 2%;
+            display: block;
+        }
+
+        .first {
+            padding: 0%;
+            margin: 0%;
+            color: #00e517;
+            font-family: 'Jaldi';
+            font-size: 50px;
+            line-height: 0;
+            /* Ensure there's no extra line height */
+        }
+
+        .sec {
+            position: relative;
+            display: inline-block;
+            margin: 0%;
+            padding: 0%;
+            color: #fff;
+            font-family: 'Karantina';
+            font-size: 265px;
+            line-height: 1;
+            /* Ensure there's no extra line height */
+        }
+
+        
+
+        /* Media queries to make the image responsive */
+        @media (max-width: 768px) {
+            .photo {
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .sec {
+                font-size: 150px;
+            }
+
+            .first {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo {
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .sec {
+                font-size: 100px;
+            }
+
+            .first {
+                font-size: 20px;
+            }
+        }
+
+        
+
+
+        .row>.col-2 .nav-tabs {
+            flex-direction: column;
+            background-color: #000;
+            border-radius: 5%;
+            
+           
+        }
+
+        .col-2 .nav-tabs .nav-link {
+            z-index: 2;
+            width: 100%;
+            color: white;
+            text-align: left;
+            
+            background-color: rgb(0, 0, 0);
+            border-radius:5%;
+           
+        }
+
+        .col-2 .nav-tabs .nav-link:hover {
+            background-color: #333;
+            text-align: center;
+        }
+
+        .col-2 .nav-tabs .nav-link.active {
+            background-color: #00e517;
+            color: white;
+            text-align: center;
+        }
+
+        .col-10 {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .left-column {
+            flex: 1;
+        }
+
+        .right-column {
+            flex: 1;
+            text-align: right;
+        }
+
+        .name {
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .intro p {
+            flex: 1;
+            text-align: justify;
+        }
+
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+
+        /* CSS for customizing the pills and nav tabs colors */
+        .nav-pills .nav-link {
+            color: #ffffff;
+            /* Inactive pill text color */
+            background-color: #000000;
+            /* Inactive pill background color */
+            border: 1px solid #dee2e6;
+            /* Border color for inactive pills */
+            margin-right: 5px;
+        }
+
+        .nav-pills .nav-link.active {
+            color: #fff;
+            /* Active pill text color */
+            background-color: #040506;
+            /* Active pill background color */
+            border: 1px solid #00ff1e;
+            /* Border color for active pills */
+        }
+
+        .nav-pills .nav-link:hover {
+            color: #fff;
+            /* Hovered pill text color */
+            background-color: #e9b700;
+            /* Hovered pill background color */
+        }
+
+        .first {
+            opacity: 0;
+            animation: fadeIn 5s forwards;
+            /* Adjust the duration of the animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-80px);
+                /* Adjust the starting position */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                /* Adjust the final position */
+            }
+        }
+
+        .he .sec {
+            opacity: 0;
+            animation: key 5s forwards;
+        }
+
+
+        @keyframes key {
+            from {
+                opacity: 0;
+                transform: translateY(80px);
+                /* Adjust the starting position */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                /* Adjust the final position */
+            }
+        }
+
+        .col-2{
+            z-index: 1;
+        }
+
+
+        @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    .wrap-check-57 input[type=checkbox] {
+      --active: 
+#080a10;
+      --active-inner: 
+#fff;
+      --focus: 2px 
+rgba(39, 94, 254, .3);
+      --border: 
+#BBC1E1;
+      --border-hover: 
+#000000;
+      --background: 
+#fff;
+      --disabled: 
+#F6F8FF;
+      --disabled-inner: 
+#E1E6F9;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 21px;
+      outline: none;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid var(--bc, var(--border));
+      background: var(--b, var(--background));
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+    }
+    .wrap-check-57 input[type=checkbox]:after {
+      content: "";
+      display: block;
+      left: 0;
+      top: 0;
+      position: absolute;
+      transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+    }
+    .wrap-check-57 input[type=checkbox]:checked {
+      --b: var(--active);
+      --bc: var(--active);
+      --d-o: .3s;
+      --d-t: .6s;
+      --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+    }
+    .wrap-check-57 input[type=checkbox]:disabled {
+      --b: var(--disabled);
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+    .wrap-check-57 input[type=checkbox]:disabled:checked {
+      --b: var(--disabled-inner);
+      --bc: var(--border);
+    }
+    .wrap-check-57 input[type=checkbox]:disabled + label {
+      cursor: not-allowed;
+    }
+    .wrap-check-57 input[type=checkbox]:hover:not(:checked):not(:disabled) {
+      --bc: var(--border-hover);
+    }
+    .wrap-check-57 input[type=checkbox]:focus {
+      box-shadow: 0 0 0 var(--focus);
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch) {
+      width: 21px;
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):after {
+      opacity: var(--o, 0);
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):checked {
+      --o: 1;
+    }
+    .wrap-check-57 input[type=checkbox] + label {
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+
+    .wrap-check-57 input[type=checkbox]:not(.switch) {
+      border-radius: 7px;
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):after {
+      width: 5px;
+      height: 9px;
+      border: 2px solid var(--active-inner);
+      border-top: 0;
+      border-left: 0;
+      left: 7px;
+      top: 4px;
+      transform: rotate(var(--r, 20deg));
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):checked {
+      --r: 43deg;
+    }
+    .wrap-check-57 input[type=checkbox].switch {
+      width: 38px;
+      border-radius: 11px;
+    }
+    .wrap-check-57 input[type=checkbox].switch:after {
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      background: var(--ab, var(--border));
+      transform: translateX(var(--x, 0));
+    }
+    .wrap-check-57 input[type=checkbox].switch:checked {
+      --ab: var(--active-inner);
+      --x: 17px;
+    }
+    .wrap-check-57 input[type=checkbox].switch:disabled:not(:checked):after {
+      opacity: 0.6;
+    }
+  }
+
+  .wrap-check-57 * {
+    box-sizing: inherit;
+  }
+  .wrap-check-57 *:before,
+  .wrap-check-57 *:after {
+    box-sizing: inherit;
+  }
+
+    </style>
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./logo.svg" height="50px" style="padding: 2px;"> TriColor AeroTech
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./test.html">Invest In Quality</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#aboutus">About Us</a>
+
+                    </li>
+                </ul>
+
+                <form class="d-flex">
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button> -->
+                    <div class="wrap-check-57" style="margin: 20px;">
+                      <input id="s1-57" type="checkbox" class="switch">
+                      <label for="s1-57"></label>
+                    </div>
+                  </form>
+
+                <form class="d-flex" role="search">
+                    <button class="glow-on-hover">First Ignited Gear</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="photo responsive">
+        <div class="he">
+            <div class="first ">
+                | Our First Fly
+            </div>
+            <div class="sec">
+                VIKRA
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5" >
+        <div class="row">
+            <div class="col-2">
+                
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true"><img src="./pencil.png" alt="Introduction" height="20px" style="padding: 2px; filter: brightness(0) saturate(100%) invert(100%);" />
+                            <span>Intro</span></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false"><img src="./glance.png" alt="Glance" height="20px" style="padding: 2px; filter: brightness(0) saturate(100%) invert(100%);" />
+                            <span>Glance</span></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                            data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                            aria-selected="false"><img src="./literature.png" alt="Literature Survey" height="20px" style="padding: 4px; ; filter: brightness(0) saturate(100%) invert(100%);" />
+                            <span>Survey</span></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Method-tab" data-bs-toggle="tab" data-bs-target="#Method-tab-pane"
+                            type="button" role="tab" aria-controls="Method-tab-pane"
+                            aria-selected="false"><img src="./method.png" alt="Method" height="20px" style="padding: 2px; filter: brightness(0) saturate(100%) invert(100%);" />
+                            <span>Method</span></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Fabrication-tab" data-bs-toggle="tab"
+                            data-bs-target="#Fabrication-tab-pane" type="button" role="tab"
+                            aria-controls="Fabrication-tab-pane" aria-selected="false"><img src="./fibrication.png" alt="Fabrication" height="20px" style="padding: 2px; filter: brightness(0) saturate(100%) invert(100%);" />
+                            <span>Assemble</span></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Conclusions-tab" data-bs-toggle="tab"
+                            data-bs-target="#Conclusions-tab-pane" type="button" role="tab"
+                            aria-controls="Conclusions-tab-pane" aria-selected="false"><img src="./conclusion.png" alt="Conclusions" height="20px" style="padding: 2px; filter: brightness(0) saturate(100%) invert(100%);" />
+                            <span>Wrap-up</span></button>
+                    </li>
+                </ul>
+            </div>
+            <div id="extra" class="col-10" style="background-color: #000;" >
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                        tabindex="0" >
+                        <h4>Introduction</h4>
+                        <hr>
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" >
+
+
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                    aria-selected="true">Project</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-profile" type="button" role="tab"
+                                    aria-controls="pills-profile" aria-selected="false">Declaration</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-contact" type="button" role="tab"
+                                    aria-controls="pills-contact" aria-selected="false">Acknowledgmement</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-disabled" type="button" role="tab"
+                                    aria-controls="pills-disabled" aria-selected="false">Abstract</button>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                aria-labelledby="pills-home-tab" tabindex="0" >
+
+                                <h2 style="text-align: Center;">Design, Analysis and Fabrication of Quadcopter for
+                                    Surveillance and Defence application</h2>
+
+                                <br>
+                                <br>
+                                <br>
+                                <h4 style="text-align: Center;">Submitted in the partial fulfillment of the requirements
+                                    For the 7th semester of
+                                    B Tech (Mechanical Engineering)
+                                </h4>
+
+                                <br>
+                                <br>
+                                <br>
+
+
+
+                                <div class="submitted By" style="text-align: center;">
+                                    <h5 style="text-align: center;">Submitted By:</h5>
+                                    <ul>Keshav Kumar (20102109006)</ul>
+                                    <ul>Pushkar Bhardwaj (20102109026)</ul>
+                                    <ul>Prabhakar Kumar (20102109007)</ul>
+                                    <ul>Ritesh Raj (20102109008)</ul>
+
+                                    <br>
+                                    <br>
+
+                                    <h6>Under the Guidance of</h6>
+                                    <h3><b>Avinash Kumar</b></h3>
+                                    <h5>Asst. Professor, Mechanical Engineering Department</h5>
+                                    <br>
+                                    <br>
+                                    <img src="./Nalanda_College_of_Engineering_logo.png"
+                                        style="height: 300px; align-items: center;">
+                                    <br>
+                                    <br>
+                                    <h5>Department of Mechanical Engineering </h5>
+                                    <h2>Nalanda College of Engineering, Chandi, Nalanda </h2>
+                                    <h7>May 2024</h7>
+
+                                </div>
+
+
+                                <br>
+                                <br>
+
+
+
+
+
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                aria-labelledby="pills-profile-tab" tabindex="0">
+
+                                <div class="Declaration">
+
+                                    <p>We the undersigned solemnly declare that the project report on “Design, Analysis
+                                        and Fabrication of Quadcopter for Surveillance and Defence application” is based
+                                        on my own work carried out during Minor Project of our study under the
+                                        supervision of Avinash Kumar.</p>
+                                    <br>
+                                    <p>I further declare that the work contained in the report is original. This work
+                                        has not been submitted to other Institution /University for the award of degree
+                                        / diploma / certificate any other Institute / University in India or Abroad.
+                                    </p>
+                                    <br>
+                                    <p>Bihar University guidelines has been followed in writing the report. Whenever we
+                                        have used the material (data, theoretical analysis and text) from other sources,
+                                        we have given due credit to them in the text of the report and giving their
+                                        details in the references.</p>
+
+                                    <br>
+                                    <br>
+
+                                    <div class="grid">
+                                        <div class="left-column">
+                                            <div class="name">
+                                                Keshav Kumar<br>
+                                                Registration No: 20102109006
+                                            </div>
+                                            <div class="name">
+                                                Ritesh Raj<br>
+                                                Registration No: 20102109008
+                                            </div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="name">
+                                                Pushkar Bhardwaj<br>
+                                                Registration No: 20102109026
+                                            </div>
+                                            <div class="name">
+                                                Prabhakar Kumar<br>
+                                                Registration No: 20102109007
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                aria-labelledby="pills-contact-tab" tabindex="0">
+
+                                <p>We would like to make a thankful note to give a huge respect to that people who
+                                    encourage and helped us most to complete our project in a perfect way. If we think
+                                    of some people, without whom this report would not have been possible, then the
+                                    first name comes to our mind is our supervisor Avinash Kumar, Asst. Prof., ME Dept.,
+                                    NCE, Chandi, Nalanda. </p>
+                                <br>
+                                <p>We would like to first thank him for his encouraging remarks to start this journey of
+                                    making our project and for his belief in our capabilities to do so. We would like to
+                                    express our deep and sincere gratitude to him for believing us confidently. His vast
+                                    knowledge helped us in learning and better understanding of the project. </p>
+                                <br>
+                                <p>We would like to make a special note of thanks for Prof (Dr) Gopal Nandan,
+                                    HOD-Mechanical Engineering and Prof (Dr) Bhagwan Shree Ram, Principal NCE Chandi for
+                                    his generous guidance, help and useful suggestion. </p>
+                                <br>
+                                <p>At last but not the least, we want to thank to our Project Coordinator Dr. Md.
+                                    Zishanur Rahman, Asst. Professor, ME. Department without him this project could be
+                                    quite difficult for us to complete this project. His great experiences of work style
+                                    helped us in many ways. </p>
+                                <br>
+                                <br>
+                                <div class="grid">
+                                    <div class="left-column">
+                                        <div class="name">
+                                            Keshav Kumar<br>
+                                            Registration No: 20102109006
+                                        </div>
+                                        <div class="name">
+                                            Ritesh Raj<br>
+                                            Registration No: 20102109008
+                                        </div>
+                                    </div>
+                                    <div class="right-column">
+                                        <div class="name">
+                                            Pushkar Bhardwaj<br>
+                                            Registration No: 20102109026
+                                        </div>
+                                        <div class="name">
+                                            Prabhakar Kumar<br>
+                                            Registration No: 20102109007
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-disabled" role="tabpanel"
+                                aria-labelledby="pills-disabled-tab" tabindex="0">
+
+                                <p style="justify-content: space-between;">Quadcopter (Unmanned aerial vehicle) is an
+                                    electronic device which is remote controlled based drone used to achieve vertical
+                                    flight with stability using Arducopter APM 2.8 Flight Controller Board for RC Multi
+                                    Rotor Droneboard and it can be used for surveillance and as technology advances
+                                    increase the performance and reduces the cost of microcontroller so that general
+                                    public can design their own drone .The main aim of this project is for defence and
+                                    surveillance. This drone includes a frame, flight control board, motors, electronic
+                                    speed controllers, a transmitter, a receiver and Lipo battery interfaced with the
+                                    kit. Tuning and calibration of the Proportional – Integral –
+                                    Derivative-controller(PID) were done to obtain stabilization on each axis.
+                                    Currently, the project is ongoing and will be completed in no time soon.</p>
+                                <br>
+                                <br>
+
+                            </div>
+                        </div>
+                        <p></p>
+                    </div>
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                        tabindex="0">
+
+                        <h4>At a Glance</h4>
+                        <hr>
+                        <div class="intro">
+                            <p>A quadcopter, short for a quadrotor helicopter, is a versatile unmanned aerial vehicle
+                                (UAV) with a four-rotor propulsion and control system. Unmanned Aerial Vehicles (UAVs),
+                                commonly known as drones, have witnessed remarkable advancements in recent years,
+                                evolving beyond recreational and hobbyist use to play pivotal roles in various
+                                professional applications. One notable category within the drone landscape is the Heavy
+                                Lift Drones, designed and optimized for the capability to carry substantial payloads,
+                                making them well-suited for tasks that demand lifting heavy equipment or performing
+                                extended flights. This project delves into the design, construction, and application of
+                                a Heavy Lift Drone, specifically tailored for surveillance purposes in India. The need
+                                for such specialized drones arises from the growing demand for robust, versatile aerial
+                                platforms capable of lifting payloads up to 1kg while maintaining stable flight
+                                characteristics. Surveillance tasks, ranging from security monitoring to reconnaissance
+                                missions, can benefit significantly from the aerial perspective that heavy-lift drones
+                                provide. The project aims to explore the key components, design considerations, and
+                                technological aspects involved in the construction of a heavy lift drone, addressing
+                                challenges associated with stability, power distribution, and payload attachment. The
+                                surveillance aspect adds an extra layer of complexity, requiring integration of
+                                effective communication systems. By combining cutting-edge technology with a meticulous
+                                understanding of drone components and regulations, this project aspires to contribute to
+                                the field of aerial surveillance, providing a cost-effective and efficient solution for
+                                remote-controlled heavy lift drones in the Indian context. The utilization of such
+                                drones in surveillance applications can enhance situational awareness, aid in disaster
+                                response, and improve overall security measures. As we embark on this exploration, it is
+                                crucial to adhere to regulatory guidelines set by the Directorate General of Civil
+                                Aviation (DGCA) in India. This project report aims to document the step-by-step process,
+                                challenges faced, and lessons learned in constructing a drone for surveillance,
+                                fostering a deeper understanding of the intricacies involved in the realm of advanced
+                                drone technology.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                        tabindex="0">
+                        <h4>Literature survey</h4>
+                        <hr>
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-Quad-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Quad" type="button" role="tab" aria-controls="pills-Quad"
+                                    aria-selected="true">Quad-Copter</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Hovering-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Hovering" type="button" role="tab"
+                                    aria-controls="pills-Hovering" aria-selected="false">Hovering</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Motion-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Motion" type="button" role="tab" aria-controls="pills-Motion"
+                                    aria-selected="false">Motion</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Yaw-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Yaw" type="button" role="tab" aria-controls="pills-Yaw"
+                                    aria-selected="false">Yaw Maneuvers</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Propellers-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Propellers" type="button" role="tab"
+                                    aria-controls="pills-disabled" aria-selected="false">Propellers</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Regulations-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Regulations" type="button" role="tab"
+                                    aria-controls="pills-Regulations" aria-selected="false">Regulations</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Considerations-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Considerations" type="button" role="tab"
+                                    aria-controls="pills-Considerations" aria-selected="false">Considerations</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Catagory-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Catagory" type="button" role="tab"
+                                    aria-controls="pills-Catagory" aria-selected="false">Catagory</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Equipment-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Equipment" type="button" role="tab"
+                                    aria-controls="pills-Equipment" aria-selected="false">Equipment</button>
+                            </li>
+                        </ul>
+
+                        <hr>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-Quad" role="tabpanel"
+                                aria-labelledby="pills-Quad-tab" tabindex="0">
+                                <div class="intro">
+                                    <p>A Quad-copter, or multi-rotor, drone, or Quad-rotor, is a simple flying
+                                        mechanical vehicle that has four arms, and in each arm there is a motor attached
+                                        to a propeller. Multicopters with three, six or eight arms are also possible,
+                                        but work on the same principal as a Quad-copter. Two of the rotors turn
+                                        clockwise, while the other two turn counter clockwise. Quad-copters are
+                                        aerodynamically unstable, and require a flight computer to convert your input
+                                        commands into commands that change the RPMs of the propellers to produce the
+                                        desired motion. In a Quad-copter the lift is generated by the propellers. A
+                                        helicopter uses its main rotor to generate lift, but also have the ability to
+                                        vary the pitch of the rotor blades to generate control forces. The advancement
+                                        of electronic technology in flight control computers, coreless or brushless
+                                        motors, smaller microprocessors, batteries, accelerometers, cameras, and even
+                                        GPS systems made it possible to design and fly quad-copters. </p>
+                                </div>
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Hovering" role="tabpanel"
+                                aria-labelledby="pills-Hovering-tab" tabindex="0">
+
+                                <div class="intro">
+                                    <p>Hovering takes place when the upward lift balances the downward force of gravity.
+                                        To make the drone to higher, the lift force needs to be greater than the force
+                                        of gravity. This is achieved by increasing RPM on all four propellers
+                                        simultaneously, which produces more lift. To decrease the altitude, the RPM is
+                                        decreased on all four propellers simultaneously. On your controller, this is
+                                        accomplished by pushing the left stick up or down, which increases or decreases
+                                        the rotor RPM, which makes your quad-copter go up or down. In order to move the
+                                        drone left, right, forwards, and backwards, we change the angle of the lifting
+                                        force so it has a vertical and horizontal component. The vertical component
+                                        still serves to keep the quad-copter in the air, while the horizontal component
+                                        allows produces control thrust.</p>
+
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Motion" role="tabpanel"
+                                aria-labelledby="pills-Motion-tab" tabindex="0">
+
+                                <div class="intro">
+                                    <p>To make quad-copter move forward or backwards, we adjust the pitch using the
+                                        right stick on the controller. What happens is that the front propellers
+                                        decrease RPMs, while the back propellers increase RPMs. Now the lift force has a
+                                        horizontal component which results in moving the quad-copter forward. The
+                                        opposite happens to make your quad-copter go backwards. The front propeller RPM
+                                        is increased, while the back propeller RPM is decreased. To move your
+                                        quad-copter move sideways, a similar change in RPM takes place, but this time it
+                                        is on the left and right propellers. To make your drone move to left, you need
+                                        to point the lift force slightly to the left. This is done by decreasing the RPM
+                                        on the left rotors, and increasing the RPM on the right side. A similar change
+                                        in the rotor RPMs takes place to move your quad-copter to the left. </p>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Yaw" role="tabpanel" aria-labelledby="pills-Yaw-tab"
+                                tabindex="0">
+
+                                <div class="intro">
+                                    <p>Yaw is bit trickier to visualize. If the main blades are rotating anti-clockwise,
+                                        like in most quadcopters, the frame will start rotating clockwise due to torque
+                                        reaction. This is a consequence of Newton’s Third Law of dynamics. The tail
+                                        rotor balances out the torque reaction on the quadcopter frame and prevents the
+                                        frame from rotating. On a quad-copter, if all four propellers rotated the same
+                                        way, then the body of your quad-copter would rotate the opposite way. But it
+                                        obviously doesn’t. the propellers rotate clockwise, and the other two rotate
+                                        anti-clockwise. So one set of propellers produces a torque in one direction, but
+                                        the other two propellers are producing a torque in the opposite direction. These
+                                        cancel out, so your quad-copter does not rotate. For a yaw maneuver, we do want
+                                        the quad-copter to rotate. This is done by reducing the RPM on one set of
+                                        rotors, while increasing the RPM on the other set of rotors. Now there is a net
+                                        torque in one direction, so your quad-copter rotates. To produce the opposite
+                                        rotation, the RPMs on the propellers is simply reversed. The direction of the
+                                        yaw maneuver is controlled by the left stick on the controller</p>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Propellers" role="tabpanel"
+                                aria-labelledby="pills-Propellers-tab" tabindex="0">
+
+
+                                <p>There are four main forces that act on a quad-copter:</p>
+                                <br>
+                                <p>
+                                    <li>
+                                        <b>Gravity</b> - this should be obvious to everyone. This is the force that
+                                        pulls the quadcopter down due to its mass.
+                                    </li>
+
+                                    <li>
+                                        <b>Lift</b> - this is the upward reaction force on the quad-copter due to the
+                                        propellers.
+                                    </li>
+
+                                    <li>
+                                        <b>Thrust</b> – this is the horizontal reaction force on the quad-copter due to
+                                        the propellers
+                                    </li>
+
+                                    <li style="text-align:justify;">
+                                        <b>Drag</b> – this is the backward force on the quad-copter due to air. Imagine
+                                        being in a car, and putting your hand out the window. The air hitting your hand
+                                        is trying to push back.
+                                    </li>
+
+                                </p>
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Regulations" role="tabpanel"
+                                aria-labelledby="pills-Regulations-tab" tabindex="0">
+
+                                <div class="intro">
+                                    <p>According to India's national aviation authority, the Ministry of Civil Aviation,
+                                        flying a drone is legal in India, but we recommend being aware of and compliant
+                                        with the drone regulations listed below before doing so. India's Directorate
+                                        General of Civil Aviation announced the country's first Civil Aviation
+                                        Requirements (CAR) for drones on August 27, 2018 to go into effect December 1,
+                                        2018.</p>
+
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Considerations" role="tabpanel"
+                                aria-labelledby="pills-Considerations-tab" tabindex="0">
+
+                                <div class="intro">
+                                    <p> Foreigners are currently not allowed to fly drones in India. For commercial
+                                        purpose, they need to lease the drone to an Indian entity who in-turn will
+                                        obtain Unique Identification Number (UIN) and UAOP from DGCA.</p>
+                                </div>
+
+                                <h4>General Rules for Flying a Drone in India</h4>
+                                Based on our research and interpretation of the laws, here are the most important rules
+                                to know for flying a drone in India.
+                                <li style="list-style-type: none; padding: 0;">
+                                <li style="margin-bottom: 10px;">All drones except those in the Nano category must be
+                                    registered and issued a Unique Identification Number (UIN).</li>
+                                <li style="margin-bottom: 10px;">A permit is required for commercial drone operations
+                                    (except for those in the Nano category flown below 50 feet and those in the Micro
+                                    category flown below 200 feet).</li>
+                                <li style="margin-bottom: 10px;">Drone pilots must maintain a direct visual line of
+                                    sight at all times while flying.</li>
+                                <li style="margin-bottom: 10px;">Drones cannot be flown more than 400 feet vertically.
+                                </li>
+                                <li style="margin-bottom: 10px;">Drones cannot be flown in areas specified as "No Fly
+                                    Zones", which include areas near airports, international borders, Vijay Chowk in
+                                    Delhi, State Secretariat Complex in State Capitals, strategic locations, and
+                                    military installations.</li>
+                                <li style="margin-bottom: 10px;">Permission to fly in controlled airspace can be
+                                    obtained by filing a flight plan and obtaining a unique Air Defense Clearance
+                                    (ADC)/Flight Information Center (FIC) number.</li>
+                                </li>
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Catagory" role="tabpanel"
+                                aria-labelledby="pills-Catagory-tab" tabindex="0">
+
+                                <h4> Drone Categories in India </h4>
+                                <br>
+
+                                Registration is required for all but the Nano category.
+
+                                <ul style="padding: 0;">
+                                    <li style="margin-bottom: 10px; list-style: none;">• Nano: Less than or equal to 250
+                                        grams (.55 pounds)</li>
+                                    <li style="margin-bottom: 10px; list-style: none;">• Micro: From 250 grams (.55
+                                        pounds) to 2kg (4.4 pounds)</li>
+                                    <li style="margin-bottom: 10px; list-style: none;">• Small: From 2kg (4.4 pounds) to
+                                        25kg (55 pounds)</li>
+                                    <li style="margin-bottom: 10px; list-style: none;">• Medium: From 25kg (55 pounds)
+                                        to 150kg (330 pounds)</li>
+                                    <li style="margin-bottom: 10px; list-style: none;">• Large: Greater than 150kg (33
+                                        pounds)</li>
+                                </ul>
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Equipment" role="tabpanel"
+                                aria-labelledby="pills-Equipment-tab" tabindex="0">
+
+                                <h4>Required Drone Equipment in India </h4>
+
+                                Also worth noting is that India has specific requirements regarding the types of
+                                features a drone must have to be flown in India (excluding those in the Nano category).
+                                These mandatory requirements include:
+
+                                <br>
+                                <ul style="padding: 0;">
+                                    <li style="margin-bottom: 10px; list-style: none;">• GPS</li>
+                                    <li style="margin-bottom: 10px;list-style: none;">• Return-to-home (RTH)</li>
+                                    <li style="margin-bottom: 10px;list-style: none;">• Anti-collision light</li>
+                                    <li style="margin-bottom: 10px;list-style: none;">• ID plate</li>
+                                    <li style="margin-bottom: 10px;list-style: none;">• A flight controller with flight
+                                        data logging capability</li>
+                                    <li style="margin-bottom: 10px;list-style: none;">• RF ID and SIM/No Permission No
+                                        Takeoff (NPNT)</li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Method-tab-pane" role="tabpanel" aria-labelledby="Method-tab"
+                        tabindex="0">
+                        <h4>Methodology</h4>
+                        <hr>
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-Basic-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Basic" type="button" role="tab" aria-controls="pills-Basic"
+                                    aria-selected="true">Basic</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-profiles-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-profiles" type="button" role="tab"
+                                    aria-controls="pills-profiles" aria-selected="false">Components</button>
+                            </li>
+
+                        </ul>
+
+                        <hr>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-Basic" role="tabpanel"
+                                aria-labelledby="pills-Basic-tab" tabindex="0">
+
+                                Quadcopter consists of four rotors which are fixed at the end of the frame structure. In
+                                this case, a
+                                pair of rotors along the arms of the frame rotates in a clockwise direction while the
+                                remaining pair
+                                of rotors rotate in an anticlockwise direction.
+
+                                <br><br>
+
+                                <h5 style="text-align: center;"><b> Due to this, the resultant torque acting on the
+                                        airframe structure is zero.</b></h5>
+                                <br>
+                                <br>
+                                <img src="./working.png" class="responsive">
+
+                                <br>
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-profiles" role="tabpanel"
+                                aria-labelledby="pills-profiles-tab" tabindex="0">
+
+                                <h5><b>Basic Components for building a quadcopter:</b></h5>
+
+                                <br>
+                                <br>
+
+
+
+                                <ol>
+                                    <li>
+                                        <strong>Frame:</strong>
+                                        <ul>
+                                            <li>Choose a sturdy frame capable of supporting heavy payloads.</li>
+                                            <li>Made of fiber and has an integrated PCB for soldering ESCs and battery
+                                                wires.</li>
+                                            <li>Carbon fiber frames are commonly used for their strength-to-weight
+                                                ratio.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Motors and Propellers:</strong>
+                                        <ul>
+                                            <li><strong>Motors:</strong></li>
+                                            <ul>
+                                                <li>Select powerful brushless motors with high thrust capability.</li>
+                                                <li>With max power of 920W and 1400Kv (rpm/v).</li>
+                                                <li>Compatible with 3s-5s LiPo batteries.</li>
+                                            </ul>
+                                            <li><strong>Propellers:</strong></li>
+                                            <ul>
+                                                <li>Choose large propellers that match the motors for efficient lift.
+                                                </li>
+                                                <li>Pusher and puller pair type.</li>
+                                            </ul>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Electronic Speed Controllers (ESCs):</strong>
+                                        <ul>
+                                            <li>Use ESCs that are compatible with the selected motors. Make sure they
+                                                can handle the current required for heavy lifting.</li>
+                                            <li>It follows a speed reference signal and varies the switching rate of
+                                                field effect transistors.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Flight Controller:</strong>
+                                        <ul>
+                                            <li>A reliable flight controller is crucial for stability.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Battery and Power Distribution:</strong>
+                                        <ul>
+                                            <li>Choosing a high-capacity LiPo battery with a voltage compatible with
+                                                your motors and ESCs.</li>
+                                            <li>Implementing a reliable power distribution system to supply power to all
+                                                components.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Payload Mechanism:</strong>
+                                        <ul>
+                                            <li>Implement a secure payload attachment mechanism.</li>
+                                            <li>Gimbal can be used to control its directions (optional).</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Remote Control System:</strong>
+                                        <ul>
+                                            <li>Choose a reliable remote control system with sufficient range.</li>
+                                            <li>Consider using a telemetry system for real-time data feedback.</li>
+                                            <li>The modulation scheme used between transmitter and receiver is pulse
+                                                position modulation (PPM).</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Fabrication-tab-pane" role="tabpanel"
+                        aria-labelledby="Fabrication-tab" tabindex="0">
+                        <h4>Fibrication of The Project</h4>
+                        <hr>
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-OverView-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-OverView" type="button" role="tab"
+                                    aria-controls="pills-OverView" aria-selected="true">OverView</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Arducopter-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Arducopter" type="button" role="tab"
+                                    aria-controls="pills-Arducopter" aria-selected="false">Arducopter</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Speed-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Speed" type="button" role="tab" aria-controls="pills-speed "
+                                    aria-selected="false">Speed Controllers</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-BLDC-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-BLDC" type="button" role="tab" aria-controls="pills-BLDC"
+                                    aria-selected="false">BLDC</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Prope-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Prope" type="button" role="tab" aria-controls="pills-Prope"
+                                    aria-selected="false">Propellers</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Battery-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Battery" type="button" role="tab"
+                                    aria-controls="pills-Battery" aria-selected="false">Battery</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Transmitter-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Transmitter" type="button" role="tab"
+                                    aria-controls="pills-Transmitter" aria-selected="false">Transmitter &
+                                    Receiver</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-Frame-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-Frame" type="button" role="tab" aria-controls="pills-Frame"
+                                    aria-selected="false">Frame</button>
+                            </li>
+
+
+                        </ul>
+
+                        <hr>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-OverView" role="tabpanel"
+                                aria-labelledby="pills-OverView-tab" tabindex="0">
+
+                                <div class="intro">
+
+                                    <p>The system consist of Arducopter APM 2.8 Multi-rotor board, transmitter,
+                                        receiver, Li-po
+                                        battery, electronic speed controllers, motors and frame.</p>
+
+                                </div>
+
+                                <br>
+                                <br>
+
+                                <img src="./archi.png" style="height: auto; width: 100%;">
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Arducopter" role="tabpanel"
+                                aria-labelledby="pills-Arducopter-tab" tabindex="0">
+
+
+
+                                <div class="intro">
+
+                                    <p>ArduPilot is an open-source autopilot system that controls hardware like
+                                        multi-copters, helicopters, aircraft, boats, submarines, and rovers. ArduPilot
+                                        boards are designed to fit inside drones and connect to components like GPS,
+                                        radio, and speed controllers. The ArduPilot flight control board includes a
+                                        Ground Control Station (GCS) interface that can run on a PC or mobile device.
+                                    </p>
+
+                                </div>
+
+                                <h5>Specifications of Arducopter APM 2.8 </h5>
+
+                                <table>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor</td>
+                                        <td>ATMEGA2560 and ATMEGA32U-2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sensors</td>
+                                        <td>3-Axis Gyrometer, Accelerometer, High-performance Barometer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (L*W*H)</td>
+                                        <td>7 * 4.5 * 1.5 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input Voltage</td>
+                                        <td>12~16 Volt DC</td>
+                                    </tr>
+                                </table>
+
+
+                                <img src="./arducopter.png" class="responsive">
+
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Speed" role="tabpanel"
+                                aria-labelledby="pills-Speed-tab" tabindex="0">
+
+
+                                <div class="intro">
+
+                                    <p>An electronic speed controller is an electronic device used to control the speed
+                                        of the motor and the direction also. It follows a speed reference signal and
+                                        varies the switching rate of field effect transistors. By adjusting the duty
+                                        cycle or switching the frequencies of the transistors the speed can be changed.
+                                    </p>
+
+                                </div>
+
+                                <h5>Specifications of Electronic speed controllers</h5>
+
+                                <table>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor</td>
+                                        <td>ATMEGA2560 and ATMEGA32U-2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sensors</td>
+                                        <td>3-Axis Gyrometer, Accelerometer, High-performance Barometer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (L*W*H)</td>
+                                        <td>7 * 4.5 * 1.5 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input Voltage</td>
+                                        <td>12~16 Volt DC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Burst Current</td>
+                                        <td>40A for 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constant Current</td>
+                                        <td>30A max, 40A < 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BEC</td>
+                                        <td>3 Amp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suitable Batteries</td>
+                                        <td>2-3s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (mm) L*W*H</td>
+                                        <td>45 * 24 * 9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>23 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application</td>
+                                        <td>BLDC Motors, Multi rotors, RC Planes etc.</td>
+                                    </tr>
+                                </table>
+
+
+                                <img src="./esc.png" class="responsive">
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-BLDC" role="tabpanel" aria-labelledby="pills-BLDC-tab"
+                                tabindex="0">
+
+
+                                <div class="intro">
+
+                                    <p>BLDC motors is a type of synchronous motor thet is powered by DC source via an
+                                        inverter to produce an AC electric current to drive each phase of the motor. Its
+                                        construction is simple as permanent magnet synchronous motor. The advantage of
+                                        this motor is high speed and electronic control.</p>
+
+
+                                </div>
+
+                                <h5>Specifications of Brushless DC Motors</h5>
+
+
+                                <table>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor</td>
+                                        <td>ATMEGA2560 and ATMEGA32U-2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sensors</td>
+                                        <td>3-Axis Gyrometer, Accelerometer, High-performance Barometer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (L*W*H)</td>
+                                        <td>7 * 4.5 * 1.5 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input Voltage</td>
+                                        <td>12~16 Volt DC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Burst Current</td>
+                                        <td>40A for 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constant Current</td>
+                                        <td>30A max, 40A &lt; 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BEC</td>
+                                        <td>3 Amp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suitable Batteries</td>
+                                        <td>2-3s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (mm) L*W*H</td>
+                                        <td>45 * 24 * 9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>23 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application</td>
+                                        <td>BLDC Motors, Multi rotors, RC Planes etc.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kv (rpm/v)</td>
+                                        <td>1400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max. Power</td>
+                                        <td>143w</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ESC</td>
+                                        <td>30A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>150g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Battery</td>
+                                        <td>3s-5s LiPo</td>
+                                    </tr>
+                                </table>
+
+
+                                <img src="./bldc.png" class="responsive">
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Prope" role="tabpanel"
+                                aria-labelledby="pills-Prope-tab" tabindex="0">
+
+
+                                <div class="intro">
+
+                                    <p>These are simply fans which convert the motion of the motor into upward thrust.
+                                        They are, made up of flexible fiber to be unbreakable while crashing landing.
+                                    </p>
+
+
+                                </div>
+
+                                <h5>Specifications of Propellers</h5>
+
+                                <table>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor</td>
+                                        <td>ATMEGA2560 and ATMEGA32U-2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sensors</td>
+                                        <td>3-Axis Gyrometer, Accelerometer, High-performance Barometer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (L*W*H)</td>
+                                        <td>7 * 4.5 * 1.5 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input Voltage</td>
+                                        <td>12~16 Volt DC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Burst Current</td>
+                                        <td>40A for 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constant Current</td>
+                                        <td>30A max, 40A &lt; 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BEC</td>
+                                        <td>3 Amp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suitable Batteries</td>
+                                        <td>2-3s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (mm) L*W*H</td>
+                                        <td>45 * 24 * 9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>23 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application</td>
+                                        <td>BLDC Motors, Multi rotors, RC Planes etc.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kv (rpm/v)</td>
+                                        <td>1400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max. Power</td>
+                                        <td>143w</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ESC</td>
+                                        <td>30A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>150g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Battery</td>
+                                        <td>3s-5s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inches</td>
+                                        <td>10 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thickness</td>
+                                        <td>0.45 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diameter</td>
+                                        <td>0.8 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>22 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>Pusher & puller pair Type</td>
+                                    </tr>
+                                </table>
+
+
+                                <img src="./prope.png" class="responsive">
+
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Battery" role="tabpanel"
+                                aria-labelledby="pills-Battery-tab" tabindex="0">
+
+                                <div class="intro">
+                                    <p>Lithium polymer battery or Li-Po battery is a simple rechargeable battery with
+                                        different current ratings and number of cells. Here lithium ion adds to the
+                                        polymer which is an electrolyte.</p>
+                                </div>
+
+                                <h5>Specifications of Battery</h5>
+
+
+                                <table>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor</td>
+                                        <td>ATMEGA2560 and ATMEGA32U-2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sensors</td>
+                                        <td>3-Axis Gyrometer, Accelerometer, High-performance Barometer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (L*W*H)</td>
+                                        <td>7 * 4.5 * 1.5 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input Voltage</td>
+                                        <td>12~16 Volt DC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Burst Current</td>
+                                        <td>40A for 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constant Current</td>
+                                        <td>30A max, 40A &lt; 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BEC</td>
+                                        <td>3 Amp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suitable Batteries</td>
+                                        <td>2-3s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (mm) L*W*H</td>
+                                        <td>45 * 24 * 9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>23 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application</td>
+                                        <td>BLDC Motors, Multi rotors, RC Planes etc.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kv (rpm/v)</td>
+                                        <td>1400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max. Power</td>
+                                        <td>143w</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ESC</td>
+                                        <td>30A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>150g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Battery</td>
+                                        <td>3s-5s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inches</td>
+                                        <td>10 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thickness</td>
+                                        <td>0.45 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diameter</td>
+                                        <td>0.8 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>22 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>Pusher & puller pair Type</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type Battery</td>
+                                        <td>Li-po</td>
+                                    </tr>
+                                    <tr>
+                                        <td>No. of cells</td>
+                                        <td>3s (3 cells)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>mAh</td>
+                                        <td>3300mAh</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Output voltage</td>
+                                        <td>11.1 V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>400 g</td>
+                                    </tr>
+                                </table>
+
+                                <img src="./battery.png" class="responsive">
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Transmitter" role="tabpanel"
+                                aria-labelledby="pills-Transmitter-tab" tabindex="0">
+
+
+                                <div class="intro">
+                                    <p>The Transmitter acts as a controller from the user. It is radio communicating
+                                        wireless control system. The signal from the transmitter is received by the
+                                        receiver is given to Arducopter APM 2.8 Board. This Board will send the signal
+                                        to all electronic speed controller from that speed of the motor is controlled by
+                                        the transmitter. The modulation scheme used in between transmitter and receiver
+                                        is pulse position modulation (PPM).</p>
+                                </div>
+
+                                <h5>Specifications of Transmitter & receiver</h5>
+
+                                <table>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor</td>
+                                        <td>ATMEGA2560 and ATMEGA32U-2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sensors</td>
+                                        <td>3-Axis Gyrometer, Accelerometer, High-performance Barometer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (L*W*H)</td>
+                                        <td>7 * 4.5 * 1.5 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input Voltage</td>
+                                        <td>12~16 Volt DC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Burst Current</td>
+                                        <td>40A for 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constant Current</td>
+                                        <td>30A max, 40A &lt; 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BEC</td>
+                                        <td>3 Amp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suitable Batteries</td>
+                                        <td>2-3s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (mm) L*W*H</td>
+                                        <td>45 * 24 * 9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>23 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application</td>
+                                        <td>BLDC Motors, Multi rotors, RC Planes etc.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kv (rpm/v)</td>
+                                        <td>1400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max. Power</td>
+                                        <td>143w</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ESC</td>
+                                        <td>30A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>150g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Battery</td>
+                                        <td>3s-5s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inches</td>
+                                        <td>10 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thickness</td>
+                                        <td>0.45 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diameter</td>
+                                        <td>0.8 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>22 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>Pusher & puller pair Type</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type Battery</td>
+                                        <td>Li-po</td>
+                                    </tr>
+                                    <tr>
+                                        <td>No. of cells</td>
+                                        <td>3s (3 cells)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>mAh</td>
+                                        <td>3300mAh</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Output voltage</td>
+                                        <td>11.1 V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>400 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>FS-i6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Channels</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bandwidth</td>
+                                        <td>500KHz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight of controller</td>
+                                        <td>392 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions</td>
+                                        <td>174*89*190 mm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight of receiver</td>
+                                        <td>16.4 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Size of receiver</td>
+                                        <td>42.6*26.1*15.1 mm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Antenna</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Power</td>
+                                        <td>4-6.5 V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Display mode</td>
+                                        <td>Transflective STN positive type, 128*64 dot matrix VA73*39 mm, wide
+                                            backlight</td>
+                                    </tr>
+                                </table>
+
+
+                                <img src="./reciever.png" width="100%">
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Frame" role="tabpanel"
+                                aria-labelledby="pills-Frame-tab" tabindex="0">
+
+
+                                <div class="intro">
+                                    <p>There are many types of frames for Drone. They are made of fibre & has integrated
+                                        PCB for soldering ESCs and battery wires. Different colour coding made us know
+                                        the orientation of the Drone.</p>
+                                </div>
+
+                                <h5>Specifications of Frame</h5>
+
+
+                                <table>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Processor</td>
+                                        <td>ATMEGA2560 and ATMEGA32U-2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sensors</td>
+                                        <td>3-Axis Gyrometer, Accelerometer, High-performance Barometer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (L*W*H)</td>
+                                        <td>7 * 4.5 * 1.5 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input Voltage</td>
+                                        <td>12~16 Volt DC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Burst Current</td>
+                                        <td>40A for 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constant Current</td>
+                                        <td>30A max, 40A &lt; 10 sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BEC</td>
+                                        <td>3 Amp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suitable Batteries</td>
+                                        <td>2-3s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions (mm) L*W*H</td>
+                                        <td>45 * 24 * 9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>23 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application</td>
+                                        <td>BLDC Motors, Multi rotors, RC Planes etc.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kv (rpm/v)</td>
+                                        <td>1400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max. Power</td>
+                                        <td>143w</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ESC</td>
+                                        <td>30A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>150g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Battery</td>
+                                        <td>3s-5s LiPo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inches</td>
+                                        <td>10 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thickness</td>
+                                        <td>0.45 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diameter</td>
+                                        <td>0.8 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>22 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>Pusher & puller pair Type</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type Battery</td>
+                                        <td>Li-po</td>
+                                    </tr>
+                                    <tr>
+                                        <td>No. of cells</td>
+                                        <td>3s (3 cells)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>mAh</td>
+                                        <td>3300mAh</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Output voltage</td>
+                                        <td>11.1 V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>400 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>FS-i6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Channels</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bandwidth</td>
+                                        <td>500KHz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight of controller</td>
+                                        <td>392 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions</td>
+                                        <td>174*89*190 mm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight of receiver</td>
+                                        <td>16.4 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Size of receiver</td>
+                                        <td>42.6*26.1*15.1 mm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Antenna</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Power</td>
+                                        <td>4-6.5 V</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Display mode</td>
+                                        <td>Transflective STN positive type, 128*64 dot matrix VA73*39 mm, wide
+                                            backlight</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Frame</td>
+                                        <td>X shape</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Width</td>
+                                        <td>450 mm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Height</td>
+                                        <td>55 mm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>280 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Motor mounting holes</td>
+                                        <td>16</td>
+                                    </tr>
+                                </table>
+
+
+
+                                <img src="./Frame.png" class="responsive">
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Conclusions-tab-pane" role="tabpanel"
+                        aria-labelledby="Conclusions-tab" tabindex="0">
+                        <h4>Conclusions</h4>
+
+                        <hr>
+                        <div class="intro">
+                            <p>There are many places where man has to risk his life for the surveillance in industries
+                                like in horrible temperature conditions unbearable by man, high altitude work. There are
+                                many people losing their lives. So the solution to this problem can be brought up by
+                                using a remote-controlled aerial vehicle for surveillance. For such work we are working
+                                on building a quadcopter to make life easier.
+
+                                <br>
+                                <br>
+
+                                This project majorly finds its use in military and defence for surveillance at the
+                                border as a part of border security force and can reduce the loss of human lives by
+                                intimating the soldiers about the target. In the defence application it can also be used
+                                for various activities like reconnaissance mission, target tracking and situational
+                                awareness.
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container px-4 py-5">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                    <img src="./logo.svg" height="24" width="30" alt="Company Logo">
+                </a>
+                <span class="mb-3 mb-md-0 text-body-secondary">©TriColor AeroTech 2024, Inc</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-body-secondary" href="#"><img
+                            src="https://cdn-icons-png.flaticon.com/512/733/733579.png" height="24" width="24"
+                            alt="Twitter"></a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="#"><img
+                            src="https://cdn-icons-png.flaticon.com/512/733/733558.png" height="24" width="24"
+                            alt="Instagram"></a>
+                </li>
+                <li class="ms-3"><a class="text-body-secondary" href="#"><img
+                            src="https://cdn-icons-png.flaticon.com/512/733/733547.png" height="24" width="24"
+                            alt="Facebook"></a>
+                </li>
+            </ul>
+        </footer>
+
+        <script>
+
+
+document.addEventListener("DOMContentLoaded", function() {
+        // Select the elements
+        const firstText = document.querySelector('.first');
+        const redLine = document.querySelector('.sec::after');
+
+        // Function to make the red line visible
+        function showRedLine() {
+            redLine.style.display = 'block';
+        }
+
+        // Function to trigger the red line visibility after the first text animation ends
+        firstText.addEventListener('animationend', showRedLine);
+    });
+
+
+
+    
+    function checkScreenSize() {
+        var navLinks = document.querySelectorAll('.nav-link');
+        if (window.innerWidth < 768) {
+            navLinks.forEach(function(link) {
+                link.querySelector('span').remove();
+            });
+        } else {
+            navLinks.forEach(function(link) {
+                var span = document.createElement('span');
+                span.innerText = link.getAttribute('data-text');
+                link.appendChild(span);
+            });
+        }
+    }
+
+    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener('load', checkScreenSize);
+
+
+
+    function scrollToSectionFromUrl() {
+        var hash = window.location.hash;
+        if (hash) {
+            var sectionId = hash.substring(1); // Remove the '#'
+            scrollToSection(sectionId);
+        }
+    }
+
+    // Function to scroll to a specific section
+    function scrollToSection(sectionId) {
+        // Scroll to the section with the given ID
+        var section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Scroll to section if URL contains a hash
+    window.addEventListener('DOMContentLoaded', scrollToSectionFromUrl);
+
+
+
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      const switchInput = document.getElementById('s1-57');
+      const htmlElement = document.querySelector('html');
+      const extraBlackDiv = document.getElementById('extra');
+
+      switchInput.addEventListener('change', function () {
+        if (switchInput.checked) {
+          htmlElement.setAttribute('data-bs-theme', 'dark'); // Set to dark mode
+          extraBlackDiv.style.backgroundColor = '#000'; // Set background color to black
+        } else {
+          htmlElement.setAttribute('data-bs-theme', 'light'); // Set to light mode
+          extraBlackDiv.style.backgroundColor = '#FFF'; // Set background color to white
+        }
+      });
+    });
+</script>
+
+
+
+        </script>
+
+</body>
+
+</html>

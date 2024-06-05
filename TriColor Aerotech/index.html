@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadcopter Drone</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+  <style>
+    .card-cover {
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Adjust the height as needed */
+      
+    }
+
+    .card-cover:hover {
+    
+  
+  transform: scale(1.05); /* Increase the scale to 1.1 when hovered */
+}
+
+    .navbar {
+      position: fixed;
+      /* Fix the navbar to the top */
+      top: 0;
+      width: 100%;
+      /* Make the navbar span the full width */
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      z-index: 1000;
+      /* Ensure it stays above other content */
+    }
+
+    .carousel-inner img {
+      object-fit: cover;
+      height: 500px;
+      /* Adjust the height as needed */
+    }
+
+    .drone_space {
+      float: left;
+      display: flex;
+      margin-right: 20px;
+      /* Add some space between the image and text */
+    }
+
+    .gridy {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      grid-template-rows: auto;
+      width: 100%;
+      gap: 2%;
+      /* align-items: center; */
+      height: 100%;
+    }
+
+    .imgy img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    .text .new1 {
+      display: flex;
+      width: 90%;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+    }
+
+    /* Crossfade effect */
+    .carousel.carousel-fade .carousel-inner .carousel-item {
+      transition-property: opacity;
+    }
+
+    .carousel.carousel-fade .carousel-inner .carousel-item-next.carousel-item-left,
+    .carousel.carousel-fade .carousel-inner .carousel-item-prev.carousel-item-right,
+    .carousel.carousel-fade .carousel-inner .carousel-item.active {
+
+      opacity: 1;
+    }
+
+    .carousel.carousel-fade .carousel-inner .carousel-item-next,
+    .carousel.carousel-fade .carousel-inner .carousel-item-prev,
+    .carousel.carousel-fade .carousel-inner .carousel-item.active.left,
+    .carousel.carousel-fade .carousel-inner .carousel-item.active.right {
+      opacity: 0;
+    }
+
+
+
+    /* .alag img{
+      float: left;
+    }
+    .starter {
+      grid-column: 1 / 2;
+      grid-row: 1;
+    }
+    .alag .item{
+      grid-column: 2 / 3;
+      grid-row: 1;
+      background-color: aquamarine;
+    }
+
+
+    .text {
+      grid-column: 2 / 3;
+      grid-row: 1;
+      background-color: aquamarine;
+    } */
+
+    /* .text {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+    } */
+
+    .fadein {
+      opacity: 0;
+      /* Initial state is hidden */
+      animation: fadeIn 5s forwards;
+      /* Apply animation */
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        /* Final state is fully visible */
+      }
+    }
+
+
+    .glow-on-hover {
+    display: inline-block; /* Ensure it displays like a button */
+    width: 220px;
+    height: 50px;
+    line-height: 50px; /* Center text vertically */
+    text-align: center; /* Center text horizontally */
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    text-decoration: none; /* Remove underline from link */
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff4500, #ff7300, #ff9a00, #ffc300, #fffb00, #ff9a00, #ff4500, #cd3700);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 1;
+    border-radius: 10px;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000;
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 200px;
+  
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  
+  color: white;
+  transform: rotateY(180deg);
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    .wrap-check-57 input[type=checkbox] {
+      --active: 
+#080a10;
+      --active-inner: 
+#fff;
+      --focus: 2px 
+rgba(39, 94, 254, .3);
+      --border: 
+#BBC1E1;
+      --border-hover: 
+#000000;
+      --background: 
+#fff;
+      --disabled: 
+#F6F8FF;
+      --disabled-inner: 
+#E1E6F9;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 21px;
+      outline: none;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid var(--bc, var(--border));
+      background: var(--b, var(--background));
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+    }
+    .wrap-check-57 input[type=checkbox]:after {
+      content: "";
+      display: block;
+      left: 0;
+      top: 0;
+      position: absolute;
+      transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+    }
+    .wrap-check-57 input[type=checkbox]:checked {
+      --b: var(--active);
+      --bc: var(--active);
+      --d-o: .3s;
+      --d-t: .6s;
+      --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+    }
+    .wrap-check-57 input[type=checkbox]:disabled {
+      --b: var(--disabled);
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+    .wrap-check-57 input[type=checkbox]:disabled:checked {
+      --b: var(--disabled-inner);
+      --bc: var(--border);
+    }
+    .wrap-check-57 input[type=checkbox]:disabled + label {
+      cursor: not-allowed;
+    }
+    .wrap-check-57 input[type=checkbox]:hover:not(:checked):not(:disabled) {
+      --bc: var(--border-hover);
+    }
+    .wrap-check-57 input[type=checkbox]:focus {
+      box-shadow: 0 0 0 var(--focus);
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch) {
+      width: 21px;
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):after {
+      opacity: var(--o, 0);
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):checked {
+      --o: 1;
+    }
+    .wrap-check-57 input[type=checkbox] + label {
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+
+    .wrap-check-57 input[type=checkbox]:not(.switch) {
+      border-radius: 7px;
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):after {
+      width: 5px;
+      height: 9px;
+      border: 2px solid var(--active-inner);
+      border-top: 0;
+      border-left: 0;
+      left: 7px;
+      top: 4px;
+      transform: rotate(var(--r, 20deg));
+    }
+    .wrap-check-57 input[type=checkbox]:not(.switch):checked {
+      --r: 43deg;
+    }
+    .wrap-check-57 input[type=checkbox].switch {
+      width: 38px;
+      border-radius: 11px;
+    }
+    .wrap-check-57 input[type=checkbox].switch:after {
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      background: var(--ab, var(--border));
+      transform: translateX(var(--x, 0));
+    }
+    .wrap-check-57 input[type=checkbox].switch:checked {
+      --ab: var(--active-inner);
+      --x: 17px;
+    }
+    .wrap-check-57 input[type=checkbox].switch:disabled:not(:checked):after {
+      opacity: 0.6;
+    }
+  }
+
+  .wrap-check-57 * {
+    box-sizing: inherit;
+  }
+  .wrap-check-57 *:before,
+  .wrap-check-57 *:after {
+    box-sizing: inherit;
+  }
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./index.html">
+        <img src="./logo.svg" height="50px" style="padding: 2px;"> TriColor AeroTech
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="./test.html">Invest In Quality</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="scrollToSection('aboutus')" href="#">About Us</a>
+          </li>
+
+          
+
+          
+
+
+        </ul>
+
+        <form class="d-flex">
+          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button> -->
+          <div class="wrap-check-57" style="margin: 20px;">
+            <input id="s1-57" type="checkbox" class="switch">
+            <label for="s1-57"></label>
+          </div>
+        </form>
+
+        <form class="d-flex">
+          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button> -->
+          <a class="glow-on-hover" href="./vikra.html">First Ignited Gear</a>
+      </form>
+      
+
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold text-body-emphasis">TriColor AeroTech</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">TriColor AeroTech specializes in cutting-edge drone technology for surveillance,
+        environmental monitoring, and disaster response. Our UAVs feature autonomous navigation, real-time data
+        analysis, and multi-spectral imaging. We revolutionize aerial solutions with innovation, reliability, and
+        efficiency.</p>
+    </div>
+    <div class="overflow-hidden" style="max-height: 30vh;">
+      <div class="container px-5">
+        <img src="./controlling-drone.jpg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image"
+          width="700" height="500" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="container px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Why Choose The TriColor AeroTech</h2>
+
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+          style="background-image: url(./reliability.png);">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Reliable Products</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+          style="background-image: url(./efficiency.png);">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Efficient Technology</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+          style="background-image: url(./customer-service-priority-1.png);">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Customer-prioritized Services</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="innovation">
+
+    <div class="container px-4 py-5" id="custom-cards">
+      <h2 class="pb-2 border-bottom">Innovation and Technology</h2>
+
+
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url(./autonomus\ navigation.png);">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="color: rgb(0, 255, 128);">Autonomous Navigation</h3>
+            </div>
+            <div class="flip-card-back">
+              
+              <p style="text-align: justify;">Utilizing advanced algorithms for obstacle avoidance, the drone autonomously navigates its surroundings with precision.</p>
+              
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url(./realtime.jpg);">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="color: rgb(0, 255, 128);">Real-time Data
+                Analytics</h3>
+              </div>
+              <div class="flip-card-back">
+
+                <p style="text-align: justify;">Real-time data analytics processes incoming data streams instantly, providing valuable insights for timely decision-making.</p>
+
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url(./multispectral.jpeg);">
+            
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+
+
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="color: rgb(0, 255, 128);">Multi-spectral Imaging
+              </h3>
+            </div>
+            <div class="flip-card-back">
+             
+              <p style="text-align: justify;">Multi-spectral imaging harnesses a range of wavelengths to capture rich and diverse data, offering insights across various fields from agriculture to medical diagnostics.</p>
+              
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url(./426072.jpg);">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="color: rgb(0, 255, 128);">Cutting-edge Hardware
+              </h3>
+            </div>
+            <div class="flip-card-back">
+              
+              <p style="text-align: justify;">Employing cutting-edge hardware enables unparalleled performance and reliability, setting new benchmarks in technological capability.</p>
+              
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url(./future.jpg);">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="color: rgb(0, 255, 128);">Future-ready Technology
+              </h3>
+            </div>
+            <div class="flip-card-back">
+            
+              <p style="text-align: justify;">Future-ready technology integrates cutting-edge advancements, preparing businesses for tomorrow's challenges and opportunities.</p>
+              
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url(./boywithdrone.jpg);">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="color: rgb(0, 255, 128);">Client-focused
+                Innovation</h3>
+
+              </div>
+              <div class="flip-card-back">
+               
+                <p style="text-align: justify;">Client-focused innovation drives our product development, ensuring solutions tailored to meet the evolving needs and preferences of our customers.</p>
+                
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+
+  <div class="container px-4 py-5 " >
+
+    <h2 class="pb-2 border-bottom">Innovation Gallery</h2>
+
+
+
+    <div id="carouselExampleIndicators" class="carousel slide ">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner" style=" border-radius: 20px;">
+        <div class="carousel-item active">
+          <img src="./dpic2.jpg" class="d-block w-100 drona" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="./drone1-min-5.jpg" class="d-block w-100 drona" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="./live_drone.jpg" class="d-block w-100 drona" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Keep all the existing content above the 'alag' section unchanged -->
+
+  <div id="aboutus" class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom">Our Starting Gearheads</h2>
+
+    <div class="alag">
+      <div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade starter" data-bs-ride="carousel">
+
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            <div class="item ">
+              <div class="gridy">
+                <div class="item imgy">
+                  <img src="./DSC_0023.JPG " class="item" style=" border-radius: 20px;" class="d-block w-100" alt="...">
+                </div>
+                <div class="text">
+                  <div class="new" style="text-align: left;"><b>
+                      <h2 class="fadein">|RITESH SHARMA</h2>
+                    </b></div>
+                  <div class="new1">
+                    <p>Ritesh Sharma, a dynamic mechanical engineer, is pioneering innovation through his startup
+                      ventures. With a blend of technical expertise and entrepreneurial vision, he's revolutionizing
+                      industries with cutting-edge solutions.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="carousel-item" data-bs-interval="3000">
+            <div class="item">
+              <div class="gridy">
+                <div class="item imgy">
+                  <img src="./amitesh.jpg " class="item" style=" border-radius: 20px;" class="d-block w-100" alt="...">
+                </div>
+                <div class="text">
+                  <div class="new" style="text-align: left;"><b>
+                      <h2 class="fadein">|AMITESH RAJ</h2>
+                    </b></div>
+                  <div class="new1">
+                    <p>Amitesh Raj, a Computer Science student at IIT Patna, is a dynamic innovator with a penchant for
+                      pioneering solutions at the forefront of technological advancement. With a strong grasp of
+                      computer science fundamentals and a commitment to pushing boundaries, he's positioned to drive
+                      innovation in the field.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" data-bs-interval="3000">
+            <div class="item ">
+              <div class="gridy">
+                <div class="item imgy">
+                  <img src="./ritu.jpg " class="item" style=" border-radius: 20px;" class="d-block w-100" alt="...">
+                </div>
+                <div class="text">
+                  <div class="new" style="text-align: left;"><b>
+                      <h2 class="fadein">|RITU KUMARI</h2>
+                    </b></div>
+                  <div class="new1">
+                    <p>Ritu Kumari, an experienced advisor at our company, brings a wealth of expertise in strategic
+                      planning and business development. Her keen insights and collaborative approach drive impactful
+                      decisions, ensuring our company remains at the forefront of industry innovation.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" data-bs-interval="3000">
+            <div class="item ">
+              <div class="gridy">
+                <div class="item imgy">
+                  <img src="./hare.jpg " class="item" style=" border-radius: 20px;" class="d-block w-100" alt="...">
+                </div>
+                <div class="text">
+                  <div class="new" style="text-align: left;"><b>
+                      <h2 class="fadein">|HARERAM SHARMA</h2>
+                    </b></div>
+                  <div class="new1">
+                    <p>Hareram Sharma, a dedicated educator, extends his passion for teaching to support our endeavors,
+                      providing invaluable financial backing. His commitment to education and financial acumen
+                      contribute significantly to our mission, fostering growth and sustainability.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+              data-bs-slide="prev">
+              <span class="" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+              data-bs-slide="next">
+              <span class="" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Keep all the existing content below the 'alag' section unchanged -->
+
+  <div class="container px-4 py-5">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+          <img src="./logo.svg" height="24" width="30" alt="Company Logo">
+        </a>
+        <span class="mb-3 mb-md-0 text-body-secondary">©TriColor AeroTech 2024, Inc</span>
+      </div>
+
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-body-secondary" href="#"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733579.png" height="24" width="24" alt="Twitter"></a></li>
+        <li class="ms-3"><a class="text-body-secondary" href="#"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733558.png" height="24" width="24" alt="Instagram"></a>
+        </li>
+        <li class="ms-3"><a class="text-body-secondary" href="#"><img
+              src="https://cdn-icons-png.flaticon.com/512/733/733547.png" height="24" width="24" alt="Facebook"></a>
+        </li>
+      </ul>
+    </footer>
+
+    <script src="index.js"></script>
+
+  </div>
+</body>
+
+</html>
