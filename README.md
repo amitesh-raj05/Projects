@@ -1,15 +1,29 @@
 # Projects
 
-The following is a compilation of projects I have developed, showcasing a variety of skills and technologies.
+## 1. Management System
+### Description
+A comprehensive Hostel and Mess Management System developed using C language. This system streamlines the administrative processes involved in managing a hostel and its dining services.
 
-1. **Management System**  
-   This project is a comprehensive hostel and mess management system designed to streamline the administrative processes involved in managing accommodations and dining facilities. It was developed using the C programming language and incorporates robust file handling techniques to ensure data integrity and efficient management.  
-   **Technologies Used**: C language, File Handling.
+### Technologies Used
+- C Language
+- File Handling
 
-2. **TriColor Aerotech**  
-   This project involves the creation of a professional website for TriColor Aerotech, a company specializing in drone technology. The website was built using modern web development tools to ensure a responsive and user-friendly interface. The project highlights my proficiency in front-end development, including the use of frameworks and libraries for enhanced functionality and aesthetics.  
-   **Technologies Used**: HTML, CSS, JavaScript, Bootstrap, jQuery.
+## 2. TriColor Aerotech
+### Description
+A corporate website designed for a drone company, showcasing its products and services. This responsive website is built using modern web development tools and techniques.
 
-3. **Brick Breaker**  
-   This project is a classic arcade game, Brick Breaker, implemented using the C programming language. The game features interactive gameplay and is designed to run on an FPGA (Field-Programmable Gate Array) with a 7-segment display for score tracking. This project demonstrates my ability to integrate software with hardware components and my understanding of low-level programming and digital logic design.  
-   **Technologies Used**: C language, FPGA, 7-segment Display.
+### Tools Used
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
+- jQuery
+
+## 3. Brick Breaker
+### Description
+A classic arcade game inspired by the traditional Brick Breaker game. Developed using C language and hardware components, it offers a retro gaming experience.
+
+### Technologies Used
+- C Language
+- FPGA
+- 7-segment Display
