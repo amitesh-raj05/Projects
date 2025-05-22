@@ -1,20 +1,5 @@
 # Doc-Classifiers
 
-## Team Information
-
-**Team Name:** Doc-Classifiers
-
-**Members:**
-- Kashika Agarwal (Leader)
-- Animesh Tripathy
-- Amitesh Raj
-- Siddharth Srivastava
-- Faizal
-
-## Project Deployed On
-
-The project is deployed and accessible at: [Doc-Classifiers App](https://doc-classifiers.streamlit.app/)
-
 ## Demo
 
 A video demonstration of the project is available at: [Demo Video](https://drive.google.com/file/d/1zirau03TG5Uw-IfOgVOAlqQw7uKCMY9V/view?usp=sharing)
